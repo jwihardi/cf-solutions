@@ -6,11 +6,15 @@ int main(){
   string s;
   cin >> s;
 
-  int caps = 0;
+  int lower = 0;
   for(char c : s)
-    if(c >= 'A') caps++;
+    if(islower(c)) lower++;
 
-  cout << (s.length() - caps >= 0 ? transform(s.begin(), s.end(), s.begin(), ::toupper) :
-           transform(s.begin(), s.end(), s.begin(), ::tolower)) << '\n';
+  bool is_lower = lower >= s.length() - lower;
+
+  for(char c : s)
+    cout << static_cast<char>(is_lower ? tolower(c) : toupper(c));
+
+  cout << '\n';
   return 0;
 }
